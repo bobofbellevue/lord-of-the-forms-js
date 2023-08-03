@@ -1,7 +1,7 @@
 import "./App.css";
 import { ClassApp } from "./ClassApp/ClassApp";
 import { FunctionalApp } from "./FunctionalApp/FunctionalApp";
-import { allCities } from "./utils/all-cities";
+import { allAbodes } from "./utils/all-abodes";
 
 function App() {
   return (
@@ -21,9 +21,9 @@ function App() {
           </div>
         </div>
       </div>
-      <datalist id="cities">
-        {allCities.map((city) => (
-          <option key={city}>{city}</option>
+      <datalist id="abodes">
+        {allAbodes.map((abode) => (
+          <option key={abode}>{abode}</option>
         ))}
       </datalist>
     </>

@@ -1,3 +1,5 @@
+import { capitalize, formatPalantirNumber } from "./utils/transformations.js";
+
 export const InfoRow = ({ label, value }) => {
   return (
     <div>
@@ -8,8 +10,9 @@ export const InfoRow = ({ label, value }) => {
     </div>
   );
 };
-export const ProfileInformation = ({ userData }) => {
-  if (!userData) {
+
+export const ProfileInformation = (props) => {
+  if (!props.name) {
     return (
       <>
         <u>
@@ -22,19 +25,20 @@ export const ProfileInformation = ({ userData }) => {
     );
   }
   // eslint-disable-next-line no-unused-vars
-  const { email, firstName, lastName, phone: _phone, city } = userData;
   return (
     <>
       <u>
         <h3>Your Submitted User Information</h3>
       </u>
       <div className="user-info">
-        <InfoRow label="Email" value={email} />
-        <InfoRow label="First Name" value={firstName} />
-        <InfoRow label="Last Name" value={lastName} />
-        <InfoRow label="City" value={city} />
-        {/* You will need to format the string "nnnnnnn" as "nn-nn-nn-n" */}
-        <InfoRow label="Phone" value={"12-34-56-7"} />
+        <InfoRow label="Name" value={capitalize(props.name)} />
+        <InfoRow label="Clan" value={capitalize(props.clan)} />
+        <InfoRow label="Abode" value={capitalize(props.abode)} />
+        <InfoRow
+          label="Palantir"
+          value={formatPalantirNumber(props.palantir)}
+        />
+        <InfoRow label="Email" value={props.email.toLowerCase()} />
       </div>
     </>
   );

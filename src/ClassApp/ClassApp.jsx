@@ -2,27 +2,39 @@ import { Component } from "react";
 import { ClassForm } from "./ClassForm";
 import { ProfileInformation } from "../ProfileInformation";
 
-const defaultUser = {
-  email: "default@default.com",
-  firstName: "Default",
-  lastName: "Default",
-  phone: "1234567",
-  city: "Hobbiton",
-};
-
 export class ClassApp extends Component {
+  state = {
+    user: {
+      name: "",
+      clan: "",
+      abode: "",
+      palantir: ["", "", "", ""],
+      email: "",
+    },
+  };
+
+  setUser(name, clan, abode, palantir, email) {
+    this.setState({
+      user: {
+        name: name,
+        clan: clan,
+        abode: abode,
+        palantir: palantir,
+        email: email,
+      },
+    });
+  }
+
   render() {
     return (
       <>
         <h2>Class</h2>
-        <ProfileInformation
-          userData={
-            // toggle the following lines to change
-            // null
-            defaultUser
+        <ProfileInformation {...this.state.user} />
+        <ClassForm
+          setUser={(name, clan, abode, palantir, email) =>
+            this.setUser(name, clan, abode, palantir, email)
           }
         />
-        <ClassForm />
       </>
     );
   }
